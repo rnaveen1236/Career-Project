@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Success - Your Future Starts Here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="CareerGuide - Professional career assessment and guidance platform. Discover your perfect career path through scientific assessments and expert guidance.">
+    <meta name="keywords" content="career guidance, career assessment, career test, career planning, career counseling">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F1C40F;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            color: #333333 !important;
+            background-color: #ffffff !important;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Hero section styling */
+        .hero-section {
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .hero-section .row {
+            min-height: auto;
+            padding: 2rem 0;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section .lead {
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        /* Feature cards styling */
+        .feature-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Auth section styling */
+        .auth-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .auth-welcome {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 3rem;
+        }
+
+        .auth-form-container {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+        }
+
+        .auth-form label {
+            color: #2C3E50;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            color: #2C3E50 !important;
+            background-color: #f8f9fa !important;
+            border: 1px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            background-color: #ffffff !important;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #6c757d;
+        }
+
+        .auth-tabs {
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 2rem;
+        }
+
+        .auth-tab {
+            color: #6c757d;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border: none;
+            background: none;
+            position: relative;
+        }
+
+        .auth-tab.active {
+            color: var(--accent-color);
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer styling */
+        .footer {
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-career">Career</span><span class="brand-guide">Success</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="#features" class="nav-link me-4">Features</a>
+                <button class="btn btn-outline-primary me-2" onclick="scrollToAuth('login')">Login</button>
+                <button class="btn btn-primary" onclick="scrollToAuth('signup')">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Discover Your Perfect Career Path</h1>
+                    <p class="lead mb-4">Take the first step towards your dream career with our scientific assessment tools and expert guidance.</p>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-primary btn-lg" onclick="scrollToAuth('signup')">
+                            <i class="bi bi-rocket me-2"></i>Start Your Journey
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" onclick="scrollToAuth('login')">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image text-center">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" 
+                             alt="Career Guidance" 
+                             class="img-fluid rounded-4 shadow-lg"
+                             style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">How CareerGuide Works</h2>
+                <p class="lead text-muted">Our comprehensive assessment process helps you discover your perfect career match</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-clipboard-data"></i>
+                        </div>
+                        <h3>Psychometric Assessment</h3>
+                        <p>Understand your personality traits, interests, and work preferences through our scientific assessment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h3>Intelligence Analysis</h3>
+                        <p>Discover your unique intelligence types and how they align with different career paths.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-map"></i>
+                        </div>
+                        <h3>Career Roadmap</h3>
+                        <p>Get a personalized career roadmap with step-by-step guidance to achieve your goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="container">
+        <div class="auth-card">
+            <div class="row g-0">
+                <!-- Left Section - Welcome Content -->
+                <div class="col-lg-6">
+                    <div class="auth-welcome">
+                        <div class="welcome-content">
+                                <h2 class="welcome-title">Start Your Career Journey</h2>
+                                <p class="welcome-subtitle">Join thousands of students who found their perfect career path</p>
+                            
+                            <div class="journey-steps">
+                                <div class="step">
+                                    <div class="step-icon">
+                                            <i class="bi bi-clipboard-data"></i>
+                                    </div>
+                                    <div class="step-content">
+                                            <h3>Take Assessment</h3>
+                                            <p>Complete our scientific assessments</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">
+                                            <i class="bi bi-lightbulb"></i>
+                                    </div>
+                                    <div class="step-content">
+                                            <h3>Get Insights</h3>
+                                            <p>Receive detailed career analysis</p>
+                                    </div>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">
+                                            <i class="bi bi-map"></i>
+                                    </div>
+                                    <div class="step-content">
+                                            <h3>Plan Your Path</h3>
+                                            <p>Follow your personalized roadmap</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Section - Auth Forms -->
+                <div class="col-lg-6">
+                    <div class="auth-form-container">
+                        <div class="auth-tabs">
+                            <button class="auth-tab active" data-tab="login">Login</button>
+                            <button class="auth-tab" data-tab="signup">Sign Up</button>
+                        </div>
+
+                        <!-- Login Form -->
+                        <form id="loginForm" class="auth-form active">
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                                </button>
+                        </form>
+
+                        <!-- Signup Form -->
+                        <form id="signupForm" class="auth-form">
+                            <div class="form-group">
+                                <label for="signupName">Full Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="signupName" required>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" id="signupEmail" required>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control" id="signupPassword" required>
+                            </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="bi bi-person-plus me-2"></i>Create Account
+                                </button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-muted mb-0">&copy; 2024 Career Success. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add this function to handle smooth scrolling to auth section
+        function scrollToAuth(formType) {
+            const authSection = document.querySelector('.auth-section');
+            authSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Switch to the appropriate form
+            setTimeout(() => {
+                const tab = document.querySelector(`.auth-tab[data-tab="${formType}"]`);
+                if (tab) {
+                    tab.click();
+                }
+            }, 500);
+        }
+
+    // Login form handling
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Store user info and token in localStorage
+                localStorage.setItem('currentUser', JSON.stringify({
+                    name: data.user.name,
+                    email: data.user.email,
+                    token: data.token,
+                    isLoggedIn: true
+                }));
+
+                // Show success message
+                showAlert('Login successful! Redirecting...', 'success');
+                
+                // Redirect to dashboard
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } else {
+                showAlert(data.message || 'Login failed', 'error');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            showAlert('Error connecting to server', 'error');
+        }
+    });
+    
+    // Signup form handling
+    document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Show success message
+                showAlert('Account created successfully! Please login to continue.', 'success');
+                
+                // Clear the signup form
+                document.getElementById('signupForm').reset();
+                
+                // Switch to login tab after a short delay
+                setTimeout(() => {
+                    const loginTab = document.querySelector('.auth-tab[data-tab="login"]');
+                    if (loginTab) {
+                        loginTab.click();
+                    }
+                    // Pre-fill the login email
+                    document.getElementById('loginEmail').value = email;
+                }, 1500);
+            } else {
+                showAlert(data.message || 'Signup failed', 'error');
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            showAlert('Error connecting to server', 'error');
+        }
+    });
+    
+    // Function to show alerts
+    function showAlert(message, type) {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+    
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                    <div>${message}</div>
+                    <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+                </div>
+        `;
+        
+        document.querySelector('.auth-form-container').prepend(alertDiv);
+    }
+    
+    // Tab switching functionality
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            document.querySelectorAll('.auth-tab').forEach(t => {
+                t.classList.remove('active');
+            });
+            tab.classList.add('active');
+    
+            // Show corresponding form
+            const formId = tab.dataset.tab + 'Form';
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            document.getElementById(formId).classList.add('active');
+        });
+    });
+    </script>
+</body>
+</html>

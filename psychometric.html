@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychometric Test - Career Guidance Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Include the same root variables and navbar styles as dashboard.html */
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F1C40F;
+            --danger-color: #E74C3C;
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
+        }
+
+        /* Add body background color */
+        body {
+            background-color: white !important;
+            color: #333333 !important;
+        }
+
+        /* Ensure container background is white */
+        .container {
+            background-color: white !important;
+        }
+
+        /* Ensure navbar background is white */
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Ensure dropdown menu background is white */
+        .dropdown-menu {
+            background-color: white !important;
+        }
+
+        .dropdown-item {
+            color: #333333 !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-color) !important;
+        }
+
+        /* Ensure loading state text is visible */
+        #loadingState {
+            background-color: white !important;
+        }
+
+        #loadingState p {
+            color: #333333 !important;
+        }
+
+        /* Ensure intro card text is visible */
+        #introCard {
+            background-color: white !important;
+        }
+
+        #introCard h3, #introCard p, #introCard li {
+            color: #333333 !important;
+        }
+
+        /* Existing styles from dashboard.html */
+        /* ... (copy navbar and general styles from dashboard.html) ... */
+
+        /* Additional styles for psychometric test */
+        .question-card {
+            background: white !important;
+            color: #333333 !important;
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent-color);
+        }
+
+        .options-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .option-btn {
+            flex: 1;
+            margin: 0 0.5rem;
+            padding: 1rem;
+            border: 2px solid var(--light-color);
+            border-radius: var(--border-radius-sm);
+            background: white !important;
+            color: #333333 !important;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent-color);
+            background: var(--light-color) !important;
+            color: #333333 !important;
+        }
+
+        .option-btn.selected {
+            background: var(--accent-color) !important;
+            color: white !important;
+            border-color: var(--accent-color);
+        }
+
+        /* Ensure question text is visible */
+        #questionText {
+            color: #333333 !important;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Ensure modal content is visible */
+        .modal-content {
+            background-color: white !important;
+            color: #333333 !important;
+        }
+
+        .modal-title {
+            color: #333333 !important;
+        }
+
+        .modal-body {
+            color: #333333 !important;
+        }
+
+        .progress {
+            height: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .test-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .profile-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: 100%;
+        }
+        
+        .profile-header {
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .career-suggestions .badge {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .results-summary ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .results-summary .bi {
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .progress-bar {
+            background-color: var(--accent-color);
+        }
+
+        .option-card:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+            color: #333333;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+        }
+
+        .dropdown-item.text-danger:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+        }
+
+        #userDropdown {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+        }
+
+        #userDropdown:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .dropdown-item-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (same as dashboard.html) -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <span class="brand-career">Career</span><span class="brand-guide">Success</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="bi bi-house-door me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="psychometric.html">
+                            <i class="bi bi-clipboard-data me-1"></i>Psychometric Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="intelligence.html">
+                            <i class="bi bi-lightbulb me-1"></i>Intelligence Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="careers.html">
+                            <i class="bi bi-briefcase me-1"></i>Career Matches
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="roadmap.html">
+                            <i class="bi bi-map me-1"></i>Career Roadmap
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" style="text-decoration: none;">
+                            <div class="profile-icon me-2">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <span id="userName" class="fw-bold text-dark"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="min-width: 200px;">
+                            <li>
+                                <div class="dropdown-item-text px-3 py-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-icon me-2">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <div>
+                                            <div id="dropdownUserName" class="fw-bold"></div>
+                                            <small class="text-muted">Member</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person-circle me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bell me-2"></i>Notifications</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger py-2" href="#" onclick="logout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="margin-top: 100px;">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-center mb-3">Psychometric Assessment</h1>
+                <p class="text-center text-muted mb-4">This assessment will help understand your personality traits, interests, and aptitudes.</p>
+                
+                <!-- Progress Bar -->
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="text-center d-none" id="loadingState">
+            <div class="loading-spinner mb-3"></div>
+            <p class="text-muted">Loading next question...</p>
+        </div>
+
+        <!-- Test Container -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="testContainer">
+                    <!-- Introduction Card -->
+                    <div class="question-card text-center" id="introCard">
+                        <h3 class="mb-4">Before You Begin</h3>
+                        <p>This test consists of 20 questions designed to assess various aspects of your personality and preferences.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Answer honestly - there are no right or wrong answers</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Take your time to think about each question</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i> Choose the option that best describes you</li>
+                        </ul>
+                        <button class="btn btn-primary btn-lg mt-4" onclick="startTest()">Start Test</button>
+                    </div>
+
+                    <!-- Question Template (hidden initially) -->
+                    <div class="question-card d-none" id="questionTemplate">
+                        <h4 id="questionText"></h4>
+                        <div class="options-group" id="optionsContainer"></div>
+                        <div class="test-controls">
+                            <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">Previous</button>
+                            <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal fade" id="resultsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Psychometric Assessment Results</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="resultsContent">
+                    <!-- Results will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="intelligence.html" class="btn btn-primary">Continue to Intelligence Test</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Authentication check
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            displayUserName();
+        });
+
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user || !user.isLoggedIn) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function displayUserName() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.name) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('dropdownUserName').textContent = user.name;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Psychometric Test Questions
+       // Replace the existing questions array with this one
+const questions = [
+{
+    question: "How do you usually learn something new?",
+    options: [
+        "By reading or watching tutorials",
+        "By doing it hands-on",
+        "By discussing with others",
+        "By observing and reflecting"
+    ]
+},
+{
+    question: "Which activity excites you the most?",
+    options: [
+        "Solving puzzles or math problems",
+        "Leading a group or event",
+        "Painting, drawing, or writing",
+        "Playing sports or physical games"
+    ]
+},
+{
+    question: "What is your biggest strength?",
+    options: [
+        "Logical thinking and analysis",
+        "Communication and persuasion",
+        "Creativity and imagination",
+        "Patience and empathy"
+    ]
+},
+{
+    question: "If you're working in a group, what role do you naturally take?",
+    options: [
+        "Planner and coordinator",
+        "Motivator and peacekeeper",
+        "Innovator with new ideas",
+        "Quietly help others and support the work"
+    ]
+},
+{
+    question: "How do you feel about competition?",
+    options: [
+        "I enjoy competing and aim to win",
+        "I prefer cooperation over competition",
+        "I compete only when I care about the outcome",
+        "I avoid competition if possible"
+    ]
+},
+{
+    question: "What kind of tasks do you enjoy the most?",
+    options: [
+        "Solving technical problems",
+        "Expressing myself creatively",
+        "Helping or guiding people",
+        "Leading a team or managing tasks"
+    ]
+},
+{
+    question: "How do you handle stress or pressure?",
+    options: [
+        "I break down the problem and stay calm",
+        "I talk to others or seek help",
+        "I distract myself with hobbies",
+        "I stay focused and push through"
+    ]
+},
+{
+    question: "What motivates you to work hard?",
+    options: [
+        "Recognition or rewards",
+        "Personal growth and learning",
+        "Making a difference for others",
+        "Exploring new ideas and possibilities"
+    ]
+},
+{
+    question: "In school, which subject do/did you enjoy most?",
+    options: [
+        "Math or Science",
+        "History or Literature",
+        "Art or Music",
+        "Physical Education"
+    ]
+},
+{
+    question: "What do you value most in a future career?",
+    options: [
+        "Innovation and problem-solving",
+        "Creativity and freedom",
+        "Stability and clear structure",
+        "Impacting people's lives"
+    ]
+},
+{
+    question: "How would your friends describe you?",
+    options: [
+        "Smart and curious",
+        "Friendly and outgoing",
+        "Imaginative and expressive",
+        "Reliable and caring"
+    ]
+},
+{
+    question: "What kind of environment do you prefer?",
+    options: [
+        "Quiet and focused",
+        "Social and interactive",
+        "Dynamic and ever-changing",
+        "Structured and organized"
+    ]
+},
+{
+    question: "What kind of problems do you enjoy solving the most?",
+    options: [
+        "Technical or analytical problems",
+        "Creative challenges",
+        "People-related or emotional issues",
+        "Practical or hands-on problems"
+    ]
+},
+{
+    question: "How do you handle feedback?",
+    options: [
+        "I reflect and try to improve",
+        "I enjoy getting feedback and discussing it",
+        "I don't take it personally",
+        "I get discouraged but keep going"
+    ]
+},
+{
+    question: "Which of the following would you most enjoy?",
+    options: [
+        "Designing a new app",
+        "Writing a story or song",
+        "Counseling a friend",
+        "Starting your own business"
+    ]
+}
+];
+
+// Add this profiles object after the questions array
+const profiles = {
+    innovator: {
+        title: "Innovator",
+        description: "You are analytical, curious, and driven by innovation. You enjoy solving complex problems and thinking outside the box.",
+        strengths: [
+            "Strong analytical and problem-solving skills",
+            "Quick to grasp new concepts",
+            "Innovation-driven mindset",
+            "Excellent research abilities"
+        ],
+        workStyle: [
+            "Prefers independent work",
+            "Enjoys challenging projects",
+            "Data-driven decision making",
+            "Focus on efficiency and improvement"
+        ],
+        careers: [
+            "Software Developer",
+            "Data Scientist",
+            "Research Scientist",
+            "Systems Analyst",
+            "AI/ML Engineer"
+        ]
+    },
+    leader: {
+        title: "Leader",
+        description: "You are confident, decisive, and natural at guiding others. You excel in taking charge and driving teams toward success.",
+        strengths: [
+            "Strong decision-making abilities",
+            "Excellent communication skills",
+            "Strategic thinking",
+            "Team motivation and management"
+        ],
+        workStyle: [
+            "Takes initiative in group settings",
+            "Goal-oriented approach",
+            "Delegates effectively",
+            "Thrives in dynamic environments"
+        ],
+        careers: [
+            "Business Manager",
+            "Project Manager",
+            "Entrepreneur",
+            "Corporate Executive",
+            "Management Consultant"
+        ]
+    },
+    creator: {
+        title: "Creator",
+        description: "You are imaginative, artistic, and value self-expression. You excel in bringing new ideas to life through creative means.",
+        strengths: [
+            "Strong creative abilities",
+            "Innovative thinking",
+            "Artistic vision",
+            "Attention to aesthetic detail"
+        ],
+        workStyle: [
+            "Prefers flexible environments",
+            "Values artistic freedom",
+            "Innovative problem-solving",
+            "Focus on unique solutions"
+        ],
+        careers: [
+            "UX/UI Designer",
+            "Content Creator",
+            "Digital Artist",
+            "Marketing Creative",
+            "Multimedia Designer"
+        ]
+    },
+    helper: {
+        title: "Helper",
+        description: "You are empathetic, supportive, and people-oriented. You find fulfillment in helping others and making a positive impact.",
+        strengths: [
+            "Strong interpersonal skills",
+            "Excellent listening abilities",
+            "Natural empathy",
+            "Patient and supportive nature"
+        ],
+        workStyle: [
+            "Collaborative approach",
+            "Focus on people's needs",
+            "Supportive team member",
+            "Values meaningful connections"
+        ],
+        careers: [
+            "Counselor",
+            "HR Professional",
+            "Social Worker",
+            "Teacher",
+            "Healthcare Professional"
+        ]
+    },
+    doer: {
+        title: "Doer",
+        description: "You are practical, hands-on, and results-oriented. You excel in taking action and getting things done efficiently.",
+        strengths: [
+            "Strong practical skills",
+            "Excellent organization",
+            "Action-oriented approach",
+            "Reliable and consistent"
+        ],
+        workStyle: [
+            "Hands-on approach",
+            "Results-driven",
+            "Systematic execution",
+            "Focus on practical solutions"
+        ],
+        careers: [
+            "Operations Manager",
+            "Technical Specialist",
+            "Quality Assurance",
+            "Production Manager",
+            "Field Engineer"
+        ]
+    }
+};
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startTest() {
+            document.getElementById('introCard').classList.add('d-none');
+            document.getElementById('questionTemplate').classList.remove('d-none');
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            // Show loading state
+            document.getElementById('loadingState').classList.remove('d-none');
+            document.getElementById('questionTemplate').classList.add('d-none');
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                const question = questions[index];
+                document.getElementById('questionText').textContent = `${index + 1}. ${question.question}`;
+                
+                const optionsContainer = document.getElementById('optionsContainer');
+                optionsContainer.innerHTML = '';
+                
+                question.options.forEach((option, i) => {
+                    const button = document.createElement('button');
+                    button.className = `option-btn ${answers[index] === i ? 'selected' : ''}`;
+                    button.textContent = option;
+                    button.onclick = () => selectOption(i);
+                    optionsContainer.appendChild(button);
+                });
+
+                // Hide loading state and show question
+                document.getElementById('loadingState').classList.add('d-none');
+                document.getElementById('questionTemplate').classList.remove('d-none');
+                
+                updateProgress();
+                updateNavigationButtons();
+            }, 500); // 500ms delay for smooth transition
+        }
+
+        function selectOption(optionIndex) {
+            answers[currentQuestion] = optionIndex;
+            document.querySelectorAll('.option-btn').forEach((btn, i) => {
+                btn.classList.toggle('selected', i === optionIndex);
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').textContent = 
+                currentQuestion === questions.length - 1 ? 'Finish' : 'Next';
+        }
+// Replace the showResults function with this updated version
+function showResults() {
+    // Calculate profile scores based on answers
+    const scores = {
+        innovator: 0,
+        leader: 0,
+        creator: 0,
+        helper: 0,
+        doer: 0
+    };
+
+    answers.forEach((answer, index) => {
+        // Map answers to profile scores based on the question and selected option
+        switch(index) {
+            case 0: // Learning style question
+                if(answer === 0) scores.innovator += 2;
+                if(answer === 1) scores.doer += 2;
+                if(answer === 2) scores.helper += 2;
+                if(answer === 3) scores.creator += 2;
+                break;
+            case 1: // Activity preference
+                if(answer === 0) scores.innovator += 2;
+                if(answer === 1) scores.leader += 2;
+                if(answer === 2) scores.creator += 2;
+                if(answer === 3) scores.doer += 2;
+                break;
+            // Add similar mappings for other questions
+            // This is a simplified scoring system - you can make it more sophisticated
+        }
+    });
+
+    // Find the dominant profile
+    const dominantProfile = Object.entries(scores).reduce((a, b) => 
+        b[1] > a[1] ? b : a
+    )[0];
+
+    const profile = profiles[dominantProfile];
+
+    // Display results in modal
+    const resultsModal = new bootstrap.Modal(document.getElementById('resultsModal'));
+    document.getElementById('resultsContent').innerHTML = `
+        <div class="results-summary">
+            <div class="profile-header mb-4">
+                <h3 class="text-primary">${profile.title}</h3>
+                <p class="lead">${profile.description}</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="profile-section">
+                        <h4 class="text-secondary mb-3">Key Strengths</h4>
+                        <ul class="list-unstyled">
+                            ${profile.strengths.map(strength => 
+                                `<li><i class="bi bi-check-circle-fill text-success me-2"></i>${strength}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="profile-section">
+                        <h4 class="text-secondary mb-3">Work Style</h4>
+                        <ul class="list-unstyled">
+                            ${profile.workStyle.map(style => 
+                                `<li><i class="bi bi-arrow-right-circle-fill text-primary me-2"></i>${style}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="career-suggestions mt-4">
+                <h4 class="text-secondary mb-3">Suggested Career Paths</h4>
+                <div class="d-flex flex-wrap gap-2">
+                    ${profile.careers.map(career => 
+                        `<span class="badge bg-primary p-2">${career}</span>`
+                    ).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    resultsModal.show();
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Roadmap - Career Guidance Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F1C40F;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 80px;
+            color: #333333;  /* Set default text color */
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color) !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+            color: #333333;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+        }
+
+        .dropdown-item.text-danger:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+        }
+
+        .btn-logout {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+        }
+
+        .roadmap-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #333333;  /* Ensure text is visible */
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: calc(50% - 30px);
+            position: relative;
+            color: #333333;  /* Ensure text is visible */
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -40px;
+        }
+
+        .timeline-content h4 {
+            color: #2C3E50;  /* Dark blue for headings */
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            color: #555555;  /* Dark gray for paragraphs */
+            margin-bottom: 15px;
+        }
+
+        .milestone-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #333333;  /* Ensure text is visible */
+        }
+
+        .milestone-card h5 {
+            color: #2C3E50;  /* Dark blue for headings */
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .milestone-card p {
+            color: #555555;  /* Dark gray for paragraphs */
+            margin-bottom: 10px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            color: #333333;  /* Ensure text is visible */
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-card h6 {
+            color: #2C3E50;  /* Dark blue for headings */
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .resource-card p {
+            color: #555555;  /* Dark gray for paragraphs */
+            margin-bottom: 8px;
+        }
+
+        .progress-tracker {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #333333;  /* Ensure text is visible */
+        }
+
+        .progress-tracker h5 {
+            color: #2C3E50;  /* Dark blue for headings */
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-progress {
+            margin-bottom: 15px;
+        }
+
+        .skill-progress label {
+            color: #333333;  /* Ensure labels are visible */
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+        }
+
+        .roadmap-card {
+            border-color: var(--accent-color);
+        }
+
+        .roadmap-card:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .timeline-item::before {
+            background-color: var(--accent-color);
+        }
+
+        .timeline-item.active .timeline-content {
+            border-color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        /* Update any text-muted classes */
+        .text-muted {
+            color: #666666 !important;  /* Lighter but still visible gray */
+        }
+
+        /* Update list items */
+        .timeline-content ul,
+        .milestone-card ul,
+        .resource-card ul {
+            color: #555555;  /* Dark gray for list items */
+            padding-left: 20px;
+        }
+
+        .timeline-content li,
+        .milestone-card li,
+        .resource-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Update links */
+        .timeline-content a,
+        .milestone-card a,
+        .resource-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .timeline-content a:hover,
+        .milestone-card a:hover,
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+
+        #userDropdown {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+        }
+
+        #userDropdown:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .dropdown-item-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <span class="brand-career">Career</span><span class="brand-guide">Success</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="bi bi-house-door me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="psychometric.html">
+                            <i class="bi bi-clipboard-data me-1"></i>Psychometric Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="intelligence.html">
+                            <i class="bi bi-lightbulb me-1"></i>Intelligence Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="careers.html">
+                            <i class="bi bi-briefcase me-1"></i>Career Matches
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="roadmap.html">
+                            <i class="bi bi-map me-1"></i>Career Roadmap
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" style="text-decoration: none;">
+                            <div class="profile-icon me-2">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <span id="userName" class="fw-bold text-dark"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="min-width: 200px;">
+                            <li>
+                                <div class="dropdown-item-text px-3 py-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-icon me-2">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <div>
+                                            <div id="dropdownUserName" class="fw-bold"></div>
+                                            <small class="text-muted">Member</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person-circle me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bell me-2"></i>Notifications</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger py-2" href="#" onclick="logout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+       
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3">Your Career Roadmap</h1>
+                <p class="text-muted">A detailed path to achieve your career goals</p>
+                <div class="mt-3">
+                    <a href="https://roadmap.sh/ai-roadmaps?fl=1" target="_blank" class="btn btn-outline-primary">
+                        <i class="bi bi-map-fill"></i> Explore More Detailed AI Roadmaps
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Career Selection -->
+            <div class="col-12 mb-4">
+                <div class="roadmap-container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h4>Select Your Career Path:</h4>
+                            <select class="form-select" id="careerSelect" onchange="loadRoadmap()">
+                                <option value="">Choose a career...</option>
+                                <!-- Options will be populated based on matched careers -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadmap Timeline -->
+            <!-- Update the timeline section to use full width -->
+<div class="row">
+    <!-- Career Selection -->
+   
+
+    <!-- Roadmap Timeline - Now full width -->
+    <div class="col-12">
+        <div class="roadmap-container">
+            <h4 class="mb-4">Career Path Timeline</h4>
+            <div class="timeline" id="roadmapTimeline">
+                <!-- Timeline items will be inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Career Roadmaps Database
+        // Career Roadmaps Database
+const careerRoadmaps = {
+    software_developer: {
+        title: "Software Developer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4-6 years",
+                goals: "Build a strong foundation in computer science and problem-solving",
+                steps: [
+                    "Complete 12th grade with Mathematics and Computer Science",
+                    "Enroll in a Bachelor's degree in Computer Science / IT / Software Engineering",
+                    "Optional: Pursue a Master's in AI, Data Science, Cybersecurity, etc."
+                ],
+                resources: "College Board, NPTEL, edX"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years (can start during college)",
+                goals: "Learn tools, technologies, and best practices",
+                steps: [
+                    "Programming (Python, Java, C++)",
+                    "Web development (HTML, CSS, JavaScript, React)",
+                    "Databases (MySQL, MongoDB)",
+                    "Version control (Git & GitHub)",
+                    "Problem-solving and Algorithms"
+                ],
+                resources: "FreeCodeCamp, HackerRank, W3Schools, GeeksforGeeks"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Get real-world experience and build a portfolio",
+                steps: [
+                    "Apply for internships and junior developer roles",
+                    "Build and host personal projects (portfolio website, apps)",
+                    "Start contributing to open-source projects"
+                ],
+                resources: "LinkedIn, Internshala, GitHub"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Move into leadership, architecture, or specialized roles",
+                steps: [
+                    "Senior Software Developer",
+                    "Team Lead / Project Manager",
+                    "Technical Architect / DevOps Engineer / Product Engineer"
+                ],
+                resources: "AWS, Microsoft Azure, Google Cloud Certifications"
+            }
+        ]
+    },
+    graphic_designer: {
+        title: "Graphic Designer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Develop foundational design skills and theory",
+                steps: [
+                    "Bachelor's degree in Graphic Design or related field",
+                    "Build design portfolio during studies",
+                    "Take additional courses in UI/UX design"
+                ],
+                resources: "Behance, Dribbble, Design Schools"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master design tools and principles",
+                steps: [
+                    "Proficiency in Adobe Creative Suite",
+                    "Understanding of design principles and typography",
+                    "Learn UI/UX design principles",
+                    "Develop brand identity skills"
+                ],
+                resources: "LinkedIn Learning, Udemy, YouTube tutorials"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Gain professional experience",
+                steps: [
+                    "Junior Designer roles",
+                    "Internships at design agencies",
+                    "Freelance projects",
+                    "Build professional portfolio"
+                ],
+                resources: "Design job boards, Creative agencies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance to leadership positions",
+                steps: [
+                    "Senior Designer",
+                    "Art Director",
+                    "Creative Director positions",
+                    "Start own design agency"
+                ],
+                resources: "Professional design associations, networking events"
+            }
+        ]
+    },
+    data_scientist: {
+        title: "Data Scientist",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4-6 years",
+                goals: "Build strong analytical and mathematical foundation",
+                steps: [
+                    "Bachelor's degree in Computer Science, Statistics, or related field",
+                    "Master's degree (often preferred)",
+                    "Specialized certifications in Data Science"
+                ],
+                resources: "Coursera, edX, University Programs"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master essential tools and techniques",
+                steps: [
+                    "Programming languages (Python, R)",
+                    "Data analysis and machine learning techniques",
+                    "Statistical analysis and mathematics",
+                    "Big data tools and databases"
+                ],
+                resources: "Kaggle, DataCamp, Stanford Online"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-3 years",
+                goals: "Gain practical experience",
+                steps: [
+                    "Data Analyst positions",
+                    "Junior Data Scientist roles",
+                    "Work on real-world projects",
+                    "Build project portfolio"
+                ],
+                resources: "LinkedIn, Indeed, Company websites"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance to senior positions",
+                steps: [
+                    "Senior Data Scientist",
+                    "Data Science Manager",
+                    "Chief Data Officer",
+                    "AI/ML Team Lead"
+                ],
+                resources: "Professional conferences, research papers"
+            }
+        ]
+    },
+    // Continue adding to careerRoadmaps object
+    lawyer: {
+        title: "Lawyer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "5-7 years",
+                goals: "Obtain necessary legal qualifications",
+                steps: [
+                    "Bachelor's degree",
+                    "Law degree (LLB or JD)",
+                    "Pass the bar examination",
+                    "Complete legal internships"
+                ],
+                resources: "Bar Council, Law Schools, Legal Databases"
+            },
+            {
+                phase: "Skill Development",
+                duration: "2-3 years",
+                goals: "Develop essential legal skills",
+                steps: [
+                    "Legal research and writing",
+                    "Oral advocacy and negotiation skills",
+                    "Case law analysis",
+                    "Client communication"
+                ],
+                resources: "Legal workshops, Moot courts, Law journals"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Gain practical legal experience",
+                steps: [
+                    "Legal Assistant or Paralegal",
+                    "Associate at a law firm",
+                    "Junior counsel",
+                    "Build client network"
+                ],
+                resources: "Law firms, Legal aid organizations"
+            },
+            {
+                phase: "Career Growth",
+                duration: "7+ years",
+                goals: "Advance in legal career",
+                steps: [
+                    "Senior Associate",
+                    "Partner at a law firm",
+                    "Independent practice",
+                    "Judge or Legal consultant"
+                ],
+                resources: "Bar associations, Legal conferences"
+            }
+        ]
+    },
+    architect: {
+        title: "Architect",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "5 years",
+                goals: "Complete architectural education",
+                steps: [
+                    "Bachelor's degree in Architecture",
+                    "Complete internship requirements",
+                    "Pass licensure exams",
+                    "Portfolio development"
+                ],
+                resources: "Architecture schools, NATA, COA"
+            },
+            {
+                phase: "Skill Development",
+                duration: "2-3 years",
+                goals: "Master technical and design skills",
+                steps: [
+                    "Design software proficiency (AutoCAD, Revit)",
+                    "Building codes and regulations",
+                    "Sustainable design practices",
+                    "Project management basics"
+                ],
+                resources: "Software tutorials, Building workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Gain practical experience",
+                steps: [
+                    "Architectural Intern",
+                    "Junior Architect roles",
+                    "Work on small projects",
+                    "Learn from senior architects"
+                ],
+                resources: "Architecture firms, Design studios"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance to leadership roles",
+                steps: [
+                    "Senior Architect",
+                    "Project Manager",
+                    "Principal Architect",
+                    "Own architectural firm"
+                ],
+                resources: "Professional associations, Design awards"
+            }
+        ]
+    },
+    doctor: {
+        title: "Doctor (MBBS)",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "5.5-6 years",
+                goals: "Complete medical education",
+                steps: [
+                    "MBBS degree",
+                    "Complete internship",
+                    "Clear medical licensing exam",
+                    "Optional: Prepare for PG entrance"
+                ],
+                resources: "Medical colleges, Study materials, Online resources"
+            },
+            {
+                phase: "Skill Development",
+                duration: "2-3 years",
+                goals: "Develop clinical expertise",
+                steps: [
+                    "Clinical skills and patient care",
+                    "Diagnostic and treatment planning",
+                    "Medical procedures and protocols",
+                    "Emergency care management"
+                ],
+                resources: "Hospital training, Medical workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Begin medical practice",
+                steps: [
+                    "Medical Intern",
+                    "Junior Resident Doctor",
+                    "General practitioner",
+                    "Work in hospitals/clinics"
+                ],
+                resources: "Hospitals, Healthcare centers"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Specialize and advance",
+                steps: [
+                    "Consultant Physician",
+                    "Specialist Doctor",
+                    "Medical Director",
+                    "Own medical practice"
+                ],
+                resources: "Medical conferences, Research opportunities"
+            }
+        ]
+    },
+    musician: {
+        title: "Music Composer / Performer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Develop musical foundation",
+                steps: [
+                    "Bachelor's degree in Music",
+                    "Music theory and composition",
+                    "Instrument mastery",
+                    "Performance training"
+                ],
+                resources: "Music schools, Conservatories"
+            },
+            {
+                phase: "Skill Development",
+                duration: "2-3 years",
+                goals: "Master musical abilities",
+                steps: [
+                    "Advanced instrument proficiency",
+                    "Composition and arrangement",
+                    "Music production software",
+                    "Performance techniques"
+                ],
+                resources: "Music workshops, Online courses"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Begin professional career",
+                steps: [
+                    "Session Musician",
+                    "Assistant Composer",
+                    "Live performances",
+                    "Build portfolio"
+                ],
+                resources: "Music studios, Performance venues"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Establish in music industry",
+                steps: [
+                    "Lead Composer",
+                    "Music Director",
+                    "Concert Performer",
+                    "Music Teacher/Professor"
+                ],
+                resources: "Music industry networks, Competitions"
+            }
+        ]
+    },
+    psychologist: {
+        title: "Psychologist",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "6-8 years",
+                goals: "Complete psychology education",
+                steps: [
+                    "Bachelor's degree in Psychology",
+                    "Master's or Doctorate (Ph.D./Psy.D.)",
+                    "Clinical internship",
+                    "Licensing requirements"
+                ],
+                resources: "Psychology programs, Research institutions"
+            },
+            {
+                phase: "Skill Development",
+                duration: "2-3 years",
+                goals: "Develop clinical skills",
+                steps: [
+                    "Counseling techniques",
+                    "Psychological assessment",
+                    "Therapy methods",
+                    "Research methodology"
+                ],
+                resources: "Clinical workshops, Training programs"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Begin clinical practice",
+                steps: [
+                    "Assistant Psychologist",
+                    "Counselor in schools/clinics",
+                    "Research Assistant",
+                    "Supervised practice"
+                ],
+                resources: "Mental health centers, Schools"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance in field",
+                steps: [
+                    "Clinical Psychologist",
+                    "Private Practice",
+                    "Mental Health Director",
+                    "Academic Professor"
+                ],
+                resources: "Professional associations, Conferences"
+            }
+        ]
+    },
+    // Continue adding to careerRoadmaps object
+    civil_engineer: {
+        title: "Civil Engineer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4 years",
+                goals: "Build engineering foundation",
+                steps: [
+                    "Bachelor's degree in Civil Engineering",
+                    "Engineering mathematics and physics",
+                    "Structural design principles",
+                    "Environmental engineering basics"
+                ],
+                resources: "Engineering colleges, AICTE resources"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master technical skills",
+                steps: [
+                    "Structural analysis software",
+                    "AutoCAD and other CAD tools",
+                    "Project management skills",
+                    "Construction techniques"
+                ],
+                resources: "Software training, Industry workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Gain field experience",
+                steps: [
+                    "Site Engineer",
+                    "Junior Civil Engineer",
+                    "Construction supervision",
+                    "Quality control"
+                ],
+                resources: "Construction companies, Government projects"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance to leadership",
+                steps: [
+                    "Senior Engineer",
+                    "Project Manager",
+                    "Chief Engineer",
+                    "Construction Manager"
+                ],
+                resources: "Professional certifications, Industry associations"
+            }
+        ]
+    },
+    pilot: {
+        title: "Commercial Pilot",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "2-3 years",
+                goals: "Obtain pilot licenses",
+                steps: [
+                    "Complete 12th with Physics and Mathematics",
+                    "Join flying school",
+                    "Commercial Pilot License (CPL)",
+                    "Type rating certification"
+                ],
+                resources: "Flying schools, DGCA guidelines"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master flying skills",
+                steps: [
+                    "Flight training hours",
+                    "Simulator practice",
+                    "Navigation skills",
+                    "Emergency procedures"
+                ],
+                resources: "Flight simulators, Aviation training"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Begin flying career",
+                steps: [
+                    "Co-Pilot or First Officer",
+                    "Regional airlines",
+                    "Charter flights",
+                    "Build flight hours"
+                ],
+                resources: "Airlines, Aviation companies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance in aviation",
+                steps: [
+                    "Captain",
+                    "Chief Pilot",
+                    "Flight Instructor",
+                    "Airline management"
+                ],
+                resources: "Airline training programs, Aviation networks"
+            }
+        ]
+    },
+    journalist: {
+        title: "Journalist / Media Professional",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Learn journalism fundamentals",
+                steps: [
+                    "Bachelor's in Journalism/Mass Communication",
+                    "Media ethics and law",
+                    "Writing and editing skills",
+                    "Digital media basics"
+                ],
+                resources: "Journalism schools, Media institutes"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Develop media skills",
+                steps: [
+                    "News writing and reporting",
+                    "Digital content creation",
+                    "Video editing",
+                    "Social media management"
+                ],
+                resources: "Media workshops, Online courses"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Start media career",
+                steps: [
+                    "Reporter",
+                    "Content Writer",
+                    "News Correspondent",
+                    "Build portfolio"
+                ],
+                resources: "News organizations, Digital media companies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance in media",
+                steps: [
+                    "Senior Reporter",
+                    "Editor",
+                    "News Anchor",
+                    "Media Manager"
+                ],
+                resources: "Press clubs, Media networks"
+            }
+        ]
+    },
+    fashion_designer: {
+        title: "Fashion Designer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Learn design fundamentals",
+                steps: [
+                    "Bachelor's in Fashion Design",
+                    "Design principles",
+                    "Textile knowledge",
+                    "Pattern making"
+                ],
+                resources: "Fashion institutes, Design schools"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master design skills",
+                steps: [
+                    "Sketching techniques",
+                    "Garment construction",
+                    "Fashion CAD software",
+                    "Trend forecasting"
+                ],
+                resources: "Design workshops, Industry training"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Enter fashion industry",
+                steps: [
+                    "Assistant Designer",
+                    "Fashion Illustrator",
+                    "Merchandising Assistant",
+                    "Build portfolio"
+                ],
+                resources: "Fashion houses, Design studios"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Establish in fashion",
+                steps: [
+                    "Lead Designer",
+                    "Creative Director",
+                    "Fashion Entrepreneur",
+                    "Own label/brand"
+                ],
+                resources: "Fashion weeks, Industry networks"
+            }
+        ]
+    },
+    entrepreneur: {
+        title: "Entrepreneur",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "2-4 years",
+                goals: "Build business knowledge",
+                steps: [
+                    "Business degree (optional)",
+                    "Market research",
+                    "Business planning",
+                    "Financial literacy"
+                ],
+                resources: "Business schools, Online courses"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Develop business skills",
+                steps: [
+                    "Leadership skills",
+                    "Financial management",
+                    "Marketing strategy",
+                    "Networking"
+                ],
+                resources: "Entrepreneurship workshops, Mentorship programs"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Start business venture",
+                steps: [
+                    "Market research",
+                    "Business plan creation",
+                    "Funding acquisition",
+                    "Team building"
+                ],
+                resources: "Incubators, Angel investors"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Scale business",
+                steps: [
+                    "Business expansion",
+                    "Multiple ventures",
+                    "Angel investing",
+                    "Mentoring others"
+                ],
+                resources: "Business networks, Industry associations"
+            }
+        ]
+    },
+    // Continue adding to careerRoadmaps object - add after entrepreneur career
+    chemist: {
+        title: "Chemist / Research Scientist",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4-8 years",
+                goals: "Build scientific foundation",
+                steps: [
+                    "Bachelor's in Chemistry/Science",
+                    "Master's or Ph.D. for research",
+                    "Laboratory techniques",
+                    "Research methodology"
+                ],
+                resources: "Universities, Research institutes"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Master research skills",
+                steps: [
+                    "Advanced lab techniques",
+                    "Analytical methods",
+                    "Research documentation",
+                    "Data analysis"
+                ],
+                resources: "Lab training, Scientific workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Begin research career",
+                steps: [
+                    "Laboratory Technician",
+                    "Research Assistant",
+                    "Quality Control Analyst",
+                    "Junior Scientist"
+                ],
+                resources: "Research labs, Pharmaceutical companies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Advance in research",
+                steps: [
+                    "Senior Scientist",
+                    "Research Lead",
+                    "Lab Manager",
+                    "Principal Investigator"
+                ],
+                resources: "Scientific conferences, Research papers"
+            }
+        ]
+    },
+    accountant: {
+        title: "Chartered Accountant (CA)",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4-5 years",
+                goals: "Complete CA certification",
+                steps: [
+                    "Commerce in 12th",
+                    "CA Foundation",
+                    "CA Intermediate",
+                    "CA Final"
+                ],
+                resources: "ICAI, CA coaching institutes"
+            },
+            {
+                phase: "Skill Development",
+                duration: "3 years",
+                goals: "Practical training",
+                steps: [
+                    "Articleship training",
+                    "Accounting software",
+                    "Taxation laws",
+                    "Audit procedures"
+                ],
+                resources: "CA firms, Professional training"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Begin CA practice",
+                steps: [
+                    "Junior CA",
+                    "Audit Assistant",
+                    "Tax Consultant",
+                    "Build client base"
+                ],
+                resources: "Accounting firms, Corporate sector"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Establish practice",
+                steps: [
+                    "Senior CA",
+                    "Partner in firm",
+                    "Own practice",
+                    "Financial consultant"
+                ],
+                resources: "CA associations, Professional networks"
+            }
+        ]
+    },
+    environmentalist: {
+        title: "Environmentalist",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-5 years",
+                goals: "Environmental expertise",
+                steps: [
+                    "Bachelor's in Environmental Science",
+                    "Master's in Environmental Policy",
+                    "Research methods",
+                    "Environmental law"
+                ],
+                resources: "Environmental institutes, Universities"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Practical skills",
+                steps: [
+                    "Environmental assessment",
+                    "Data collection",
+                    "Policy analysis",
+                    "Project management"
+                ],
+                resources: "Environmental NGOs, Research centers"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Field experience",
+                steps: [
+                    "Environmental Technician",
+                    "Research Assistant",
+                    "Project Coordinator",
+                    "NGO work"
+                ],
+                resources: "Environmental organizations, Government agencies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Leadership roles",
+                steps: [
+                    "Environmental Consultant",
+                    "Policy Advisor",
+                    "Program Director",
+                    "Research Lead"
+                ],
+                resources: "Environmental conferences, Policy forums"
+            }
+        ]
+    },
+    cybersecurity_analyst: {
+        title: "Cybersecurity Analyst",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Security fundamentals",
+                steps: [
+                    "Bachelor's in Computer Science/IT",
+                    "Security certifications (CEH, CISSP)",
+                    "Network fundamentals",
+                    "Programming basics"
+                ],
+                resources: "Cybersecurity institutes, Online platforms"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Security expertise",
+                steps: [
+                    "Ethical hacking",
+                    "Network security",
+                    "Incident response",
+                    "Security tools mastery"
+                ],
+                resources: "Security bootcamps, Practice labs"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Security experience",
+                steps: [
+                    "Security Analyst",
+                    "SOC Analyst",
+                    "IT Security Support",
+                    "Security testing"
+                ],
+                resources: "IT companies, Security firms"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Security leadership",
+                steps: [
+                    "Senior Security Analyst",
+                    "Security Manager",
+                    "CISO",
+                    "Security Consultant"
+                ],
+                resources: "Security conferences, Professional networks"
+            }
+        ]
+    },
+    digital_marketer: {
+        title: "Digital Marketer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Marketing foundation",
+                steps: [
+                    "Bachelor's in Marketing/Business",
+                    "Digital marketing certifications",
+                    "Analytics basics",
+                    "Content strategy"
+                ],
+                resources: "Marketing institutes, Google Digital Garage"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Digital expertise",
+                steps: [
+                    "SEO/SEM",
+                    "Social media marketing",
+                    "Email marketing",
+                    "Google Analytics"
+                ],
+                resources: "Digital marketing courses, Industry certifications"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Marketing experience",
+                steps: [
+                    "Digital Marketing Intern",
+                    "Social Media Executive",
+                    "Content Marketer",
+                    "PPC Specialist"
+                ],
+                resources: "Marketing agencies, Startups"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Marketing leadership",
+                steps: [
+                    "Digital Marketing Manager",
+                    "Marketing Director",
+                    "Head of Growth",
+                    "Marketing Consultant"
+                ],
+                resources: "Marketing conferences, Industry events"
+            }
+        ]
+    },
+    chef: {
+        title: "Chef",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "2-3 years",
+                goals: "Culinary foundation",
+                steps: [
+                    "Culinary Arts diploma/degree",
+                    "Food safety certification",
+                    "Kitchen management",
+                    "Menu planning"
+                ],
+                resources: "Culinary schools, Hotel management institutes"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Cooking mastery",
+                steps: [
+                    "Cooking techniques",
+                    "Kitchen safety",
+                    "Food presentation",
+                    "Recipe development"
+                ],
+                resources: "Professional kitchens, Cooking workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "2-3 years",
+                goals: "Kitchen experience",
+                steps: [
+                    "Commis Chef",
+                    "Line Cook",
+                    "Kitchen Assistant",
+                    "Apprentice Chef"
+                ],
+                resources: "Restaurants, Hotels"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Culinary leadership",
+                steps: [
+                    "Sous Chef",
+                    "Head Chef",
+                    "Executive Chef",
+                    "Restaurant Owner"
+                ],
+                resources: "Culinary associations, Food festivals"
+            }
+        ]
+    },
+    animator: {
+        title: "Animation Artist",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-4 years",
+                goals: "Animation basics",
+                steps: [
+                    "Animation degree/diploma",
+                    "Art fundamentals",
+                    "2D/3D animation",
+                    "Character design"
+                ],
+                resources: "Animation schools, Art institutes"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Technical mastery",
+                steps: [
+                    "Animation software (Maya, Blender)",
+                    "Storyboarding",
+                    "Motion graphics",
+                    "VFX basics"
+                ],
+                resources: "Online tutorials, Animation workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Studio experience",
+                steps: [
+                    "Junior Animator",
+                    "Character Animator",
+                    "Storyboard Artist",
+                    "Build portfolio"
+                ],
+                resources: "Animation studios, Gaming companies"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Animation leadership",
+                steps: [
+                    "Senior Animator",
+                    "Animation Director",
+                    "Art Director",
+                    "Studio Owner"
+                ],
+                resources: "Animation festivals, Industry networks"
+            }
+        ]
+    },
+    ai_engineer: {
+        title: "AI / ML Engineer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "4-6 years",
+                goals: "AI foundation",
+                steps: [
+                    "CS/AI degree",
+                    "Machine learning basics",
+                    "Mathematics and statistics",
+                    "Programming skills"
+                ],
+                resources: "Universities, Online courses"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "AI expertise",
+                steps: [
+                    "Deep learning",
+                    "Python, TensorFlow, PyTorch",
+                    "NLP, Computer Vision",
+                    "Big Data tools"
+                ],
+                resources: "AI bootcamps, Research papers"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "AI experience",
+                steps: [
+                    "Junior AI Developer",
+                    "ML Engineer",
+                    "Research Assistant",
+                    "Build AI projects"
+                ],
+                resources: "Tech companies, Research labs"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "AI leadership",
+                steps: [
+                    "Senior AI Engineer",
+                    "AI Research Scientist",
+                    "AI Architect",
+                    "AI Team Lead"
+                ],
+                resources: "AI conferences, Research publications"
+            }
+        ]
+    },
+    content_creator: {
+        title: "Content Creator / Influencer",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "1-2 years",
+                goals: "Content basics",
+                steps: [
+                    "Media/Communication courses",
+                    "Content strategy",
+                    "Platform knowledge",
+                    "Audience engagement"
+                ],
+                resources: "Online courses, Creator programs"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Content expertise",
+                steps: [
+                    "Video editing",
+                    "Photography",
+                    "Storytelling",
+                    "Social media management"
+                ],
+                resources: "YouTube tutorials, Creator workshops"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Build presence",
+                steps: [
+                    "Create original content",
+                    "Build following",
+                    "Engage with audience",
+                    "Collaborate with others"
+                ],
+                resources: "Social media platforms, Creator communities"
+            },
+            {
+                phase: "Career Growth",
+                duration: "3+ years",
+                goals: "Monetization",
+                steps: [
+                    "Brand partnerships",
+                    "Multiple revenue streams",
+                    "Own product lines",
+                    "Agency representation"
+                ],
+                resources: "Influencer networks, Brand collaborations"
+            }
+        ]
+    },
+    social_worker: {
+        title: "Social Worker",
+        timeline: [
+            {
+                phase: "Education",
+                duration: "3-6 years",
+                goals: "Social work foundation",
+                steps: [
+                    "Bachelor's in Social Work",
+                    "Master's (MSW)",
+                    "Counseling psychology",
+                    "Social policies"
+                ],
+                resources: "Social work schools, Universities"
+            },
+            {
+                phase: "Skill Development",
+                duration: "1-2 years",
+                goals: "Practical skills",
+                steps: [
+                    "Counseling techniques",
+                    "Case management",
+                    "Crisis intervention",
+                    "Community outreach"
+                ],
+                resources: "NGOs, Training programs"
+            },
+            {
+                phase: "Entry Level",
+                duration: "1-2 years",
+                goals: "Field experience",
+                steps: [
+                    "Case Worker",
+                    "Community Worker",
+                    "Counselor",
+                    "NGO volunteer"
+                ],
+                resources: "Social service organizations, Hospitals"
+            },
+            {
+                phase: "Career Growth",
+                duration: "5+ years",
+                goals: "Leadership roles",
+                steps: [
+                    "Senior Social Worker",
+                    "Program Director",
+                    "NGO Leader",
+                    "Policy Advocate"
+                ],
+                resources: "Social work conferences, Professional networks"
+            }
+        ]
+    }
+}; // End of careerRoadmaps object
+
+
+
+
+
+        // Authentication and Initial Setup
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            displayUserName();
+            populateCareerSelect();
+        });
+
+        async function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user || !user.token) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Invalid token');
+                }
+
+                const data = await response.json();
+                // Update user info in localStorage
+                localStorage.setItem('currentUser', JSON.stringify({
+                    ...user,
+                    name: data.user.name,
+                    email: data.user.email
+                }));
+            } catch (error) {
+                console.error('Auth error:', error);
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function displayUserName() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.name) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('dropdownUserName').textContent = user.name;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        function populateCareerSelect() {
+            const select = document.getElementById('careerSelect');
+            const results = JSON.parse(localStorage.getItem('intelligenceResults'));
+            
+            if (!results) {
+                select.innerHTML = `
+                    <option value="">Please complete the intelligence assessment first</option>
+                `;
+                return;
+            }
+
+            Object.entries(careerRoadmaps).forEach(([id, career]) => {
+                select.innerHTML += `
+                    <option value="${id}">${career.title}</option>
+                `;
+            });
+        }
+
+        function loadRoadmap() {
+            const careerId = document.getElementById('careerSelect').value;
+            if (!careerId) return;
+
+            const roadmap = careerRoadmaps[careerId];
+            displayTimeline(roadmap.timeline);
+            displayResources(roadmap.resources);
+            displayProgress(roadmap.skills);
+        }
+
+        function displayTimeline(timeline) {
+            const container = document.getElementById('roadmapTimeline');
+            container.innerHTML = timeline.map((phase, index) => `
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h5>${phase.phase}</h5>
+                        <p class="text-muted">Duration: ${phase.duration}</p>
+                        <ul class="list-unstyled">
+                            ${phase.steps.map(step => `
+                                <li class="mb-2">
+                                    <i class="bi bi-check-circle text-success me-2"></i>
+                                    ${step}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayResources(resources) {
+            const container = document.getElementById('resourcesList');
+            container.innerHTML = resources.map(category => `
+                <div class="resource-card">
+                    <h5>${category.title}</h5>
+                    <ul class="list-unstyled">
+                        ${category.links.map(link => `
+                            <li>
+                                <a href="${link.url}" target="_blank">
+                                    <i class="bi bi-link-45deg"></i>
+                                    ${link.name}
+                                </a>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function displayProgress(skills) {
+            const container = document.getElementById('progressTracking');
+            container.innerHTML = skills.map(skill => `
+                <div class="skill-progress">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>${skill.name}</span>
+                        <span>${skill.required}%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" 
+                            style="width: ${skill.required}%" 
+                            aria-valuenow="${skill.required}" 
+                            aria-valuemin="0" 
+                            aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveProgress() {
+            // Implement progress saving functionality
+            alert('Progress saved successfully!');
+        }
+    </script>
+</body>
+</html>

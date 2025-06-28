@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Matches - Career Guidance Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F1C40F;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 56px;
+            color: #333333;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            height: 56px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color) !important;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+            color: #333333;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+        }
+
+        .dropdown-item.text-danger:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+        }
+
+        .btn-logout {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-logout:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .career-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            background-color: white;
+        }
+
+        .career-card .text-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 12px;
+        }
+
+        .career-card h4 {
+            color: #2C3E50;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            padding: 0 15px;
+        }
+
+        .career-card p {
+            color: #555555;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .career-card .mb-3 {
+            margin-bottom: 25px !important;
+            padding: 0 10px;
+        }
+
+        .career-card .btn {
+            margin-top: auto;
+            padding: 12px 25px;
+            font-weight: 500;
+        }
+
+        .intelligence-tag {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 0.9rem;
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .match-percentage {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+        }
+
+        .filter-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 0 0 30px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .filter-section .row {
+            margin: 0 -15px;
+        }
+
+        .filter-section .col-md-4 {
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-section label {
+            color: #2C3E50;
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .filter-section .form-select,
+        .filter-section .form-range {
+            margin-bottom: 10px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 15px;
+            margin: 40px 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .no-results i {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+        }
+
+        .no-results h4 {
+            margin-bottom: 20px;
+        }
+
+        .no-results .btn {
+            margin-top: 25px;
+            padding: 12px 30px;
+        }
+
+        .container {
+            padding: 20px;
+            margin-top: 0;
+        }
+
+        .container > .row:first-child {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container > .row:first-child .col-12 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container > .row:first-child h1 {
+            margin: 0 0 8px 0;
+            padding: 0;
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        .container > .row:first-child p {
+            margin: 0 0 16px 0;
+            padding: 0;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: #666666;
+        }
+
+        .row.mb-4 {
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block;
+        }
+
+        .skill-badge {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        #careerContainer {
+            margin: 0 -15px;
+            padding-top: 0;
+        }
+
+        #careerContainer .col-md-6 {
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+
+        .career-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-card .text-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 12px;
+        }
+
+        .career-card h4 {
+            color: #2C3E50;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            padding: 0 15px;
+        }
+
+        .career-card p {
+            color: #555555;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .career-card .mb-3 {
+            margin-bottom: 25px !important;
+            padding: 0 10px;
+        }
+
+        .career-card .btn {
+            margin-top: auto;
+            padding: 12px 25px;
+            font-weight: 500;
+        }
+
+        .intelligence-tag {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 0.9rem;
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .match-percentage {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .career-details h4 {
+            margin-bottom: 25px;
+        }
+
+        .career-details h5 {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .career-details p,
+        .career-details li {
+            margin-bottom: 15px;
+        }
+
+        .career-details ul {
+            padding-left: 25px;
+            margin-bottom: 25px;
+        }
+
+        .career-details .row {
+            margin: 30px -15px;
+        }
+
+        .career-details .col-md-6 {
+            padding: 0 15px;
+        }
+
+        .career-details .btn-lg {
+            margin-top: 30px;
+            padding: 15px 30px;
+        }
+
+        #userDropdown {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+        }
+
+        #userDropdown:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .dropdown-item-text {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <span class="brand-career">Career</span><span class="brand-guide">Success</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="bi bi-house-door me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="psychometric.html">
+                            <i class="bi bi-clipboard-data me-1"></i>Psychometric Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="intelligence.html">
+                            <i class="bi bi-lightbulb me-1"></i>Intelligence Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="careers.html">
+                            <i class="bi bi-briefcase me-1"></i>Career Matches
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="roadmap.html">
+                            <i class="bi bi-map me-1"></i>Career Roadmap
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" style="text-decoration: none;">
+                            <div class="profile-icon me-2">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <span id="userName" class="fw-bold text-dark"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="min-width: 200px;">
+                            <li>
+                                <div class="dropdown-item-text px-3 py-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-icon me-2">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <div>
+                                            <div id="dropdownUserName" class="fw-bold"></div>
+                                            <small class="text-muted">Member</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person-circle me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bell me-2"></i>Notifications</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger py-2" href="#" onclick="logout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3">Your Career Matches</h1>
+                <p class="text-muted">Based on your intelligence profile, here are careers that align with your strengths</p>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="filter-section">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label class="form-label">Filter by Intelligence Type:</label>
+                            <select class="form-select" id="intelligenceFilter">
+                                <option value="all">All Types</option>
+                                <option value="linguistic">Linguistic</option>
+                                <option value="logical">Logical-Mathematical</option>
+                                <option value="spatial">Visual-Spatial</option>
+                                <option value="musical">Musical</option>
+                                <option value="kinesthetic">Bodily-Kinesthetic</option>
+                                <option value="interpersonal">Interpersonal</option>
+                                <option value="intrapersonal">Intrapersonal</option>
+                                <option value="naturalistic">Naturalistic</option>
+                                <option value="existential">Existential</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Sort by:</label>
+                            <select class="form-select" id="sortBy">
+                                <option value="match">Match Percentage</option>
+                                <option value="name">Career Name</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Minimum Match:</label>
+                            <input type="range" class="form-range" id="matchThreshold" min="0" max="100" value="60">
+                            <div class="text-end" id="thresholdValue">60%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Cards Container -->
+        <div class="row" id="careerContainer">
+            <!-- Career cards will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Career Details Modal -->
+    <div class="modal fade" id="careerModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="careerModalTitle">Career Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="careerModalContent">
+                    <!-- Career details will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Career Database
+       // Career Database
+const careers = {
+    software_developer: {
+        title: "Software Developer",
+        icon: "bi-code-slash",
+        description: "Design and develop computer software and applications",
+        intelligences: ["logical", "intrapersonal", "linguistic"],
+        skills: ["Problem Solving", "Programming", "Analytical Thinking"],
+        education: ["Bachelor's in Computer Science", "Software Engineering Certifications"],
+        salary: "$70,000 - $150,000",
+        outlook: "High growth potential",
+        details: "Software developers create computer applications, systems software, and mobile applications. They need strong logical thinking and problem-solving abilities."
+    },
+    graphic_designer: {
+        title: "Graphic Designer",
+        icon: "bi-palette",
+        description: "Create visual content for print, digital, and multimedia platforms",
+        intelligences: ["spatial", "intrapersonal", "kinesthetic"],
+        skills: ["Creativity", "Design Tools (Photoshop, Illustrator)", "Visual Storytelling"],
+        education: ["Bachelor's in Graphic Design", "Certification in UI/UX or Motion Graphics"],
+        salary: "$40,000 - $90,000",
+        outlook: "Growing demand in marketing and digital content",
+        details: "Graphic designers communicate ideas visually. They create branding, advertisements, social media posts, and more using digital tools."
+    },
+    teacher: {
+        title: "Teacher",
+        icon: "bi-easel",
+        description: "Educate students in academic and life skills",
+        intelligences: ["linguistic", "interpersonal", "logical"],
+        skills: ["Communication", "Patience", "Classroom Management"],
+        education: ["Bachelor's in Education or Subject Specialization", "B.Ed / Teaching License"],
+        salary: "$30,000 - $80,000",
+        outlook: "Stable demand across all regions and subjects",
+        details: "Teachers impart knowledge and facilitate learning in various subjects, adapting content to suit the learner's ability."
+    },
+    data_scientist: {
+        title: "Data Scientist",
+        icon: "bi-graph-up",
+        description: "Analyze complex data to help businesses make decisions",
+        intelligences: ["logical", "intrapersonal", "naturalistic"],
+        skills: ["Statistics & Math", "Machine Learning", "Python / R / SQL"],
+        education: ["Bachelor's or Master's in Data Science, Stats, or CS", "Online Certifications (Coursera, edX, etc.)"],
+        salary: "$80,000 - $160,000",
+        outlook: "Among the most in-demand jobs globally",
+        details: "Data scientists extract insights from data using algorithms and statistical models. It's a career blending business, coding, and analytics."
+    },
+    lawyer: {
+        title: "Lawyer",
+        icon: "bi-briefcase",
+        description: "Represent clients in legal disputes and advise on legal matters",
+        intelligences: ["linguistic", "logical", "interpersonal"],
+        skills: ["Research", "Argumentation", "Critical Thinking"],
+        education: ["Bachelor's in Law (LLB)", "Bar Certification"],
+        salary: "$50,000 - $200,000",
+        outlook: "Moderate growth with high competition",
+        details: "Lawyers handle legal documentation, advise clients, and represent them in court. Strong command over language and logic is essential."
+    },
+    architect: {
+        title: "Architect",
+        icon: "bi-building",
+        description: "Plan and design buildings and other structures",
+        intelligences: ["spatial", "logical", "intrapersonal"],
+        skills: ["Drawing & Drafting", "Spatial Reasoning", "CAD Software"],
+        education: ["Bachelor of Architecture (B.Arch)", "License/Internship under a registered architect"],
+        salary: "$50,000 - $120,000",
+        outlook: "Steady demand in construction and urban planning",
+        details: "Architects design buildings while ensuring functionality, safety, and aesthetic appeal. They often work with engineers and clients."
+    },
+    doctor: {
+        title: "Doctor (MBBS)",
+        icon: "bi-heart-pulse",
+        description: "Diagnose and treat illnesses and injuries",
+        intelligences: ["naturalistic", "intrapersonal", "interpersonal"],
+        skills: ["Attention to Detail", "Medical Knowledge", "Empathy"],
+        education: ["MBBS Degree", "Medical License"],
+        salary: "$60,000 - $200,000+",
+        outlook: "Evergreen field with high respect and demand",
+        details: "Doctors work in hospitals, clinics, or research. They save lives, diagnose diseases, and promote public health and wellness."
+    },
+    musician: {
+        title: "Music Composer / Performer",
+        icon: "bi-music-note",
+        description: "Create, perform, or produce music",
+        intelligences: ["musical", "kinesthetic", "interpersonal"],
+        skills: ["Instrument Proficiency", "Creativity", "Performance Skills"],
+        education: ["Bachelor's in Music / Performing Arts", "Private Training / Certifications"],
+        salary: "$30,000 - $100,000+",
+        outlook: "Competitive, but high rewards for skilled artists",
+        details: "Music careers involve composing, performing, or producing music for entertainment, film, education, or therapy."
+    },
+    athlete: {
+        title: "Sports Professional / Athlete",
+        icon: "bi-trophy",
+        description: "Compete in and train for sports professionally",
+        intelligences: ["kinesthetic", "intrapersonal", "interpersonal"],
+        skills: ["Physical Fitness", "Discipline", "Teamwork"],
+        education: ["Sports Schooling / Training Academy", "Optional Bachelor in Physical Education"],
+        salary: "$25,000 - $200,000+",
+        outlook: "High visibility but very competitive",
+        details: "Athletes train rigorously and compete at various levels. Success in this career demands discipline, talent, and coaching."
+    },
+    psychologist: {
+        title: "Psychologist",
+        icon: "bi-person-hearts",
+        description: "Study human behavior and help people cope with emotional challenges",
+        intelligences: ["intrapersonal", "interpersonal", "linguistic"],
+        skills: ["Empathy", "Active Listening", "Analytical Thinking"],
+        education: ["Bachelor's in Psychology", "Master's in Clinical/Counseling Psychology", "Optional Ph.D. or Psy.D."],
+        salary: "$45,000 – $120,000",
+        outlook: "Growing demand in schools, hospitals, and private practice",
+        details: "Psychologists assess, diagnose, and treat mental and emotional disorders. They also conduct research to understand human behavior."
+    },
+    civil_engineer: {
+        title: "Civil Engineer",
+        icon: "bi-tools",
+        description: "Design, construct, and maintain infrastructure",
+        intelligences: ["logical", "spatial", "naturalistic"],
+        skills: ["Problem Solving", "Project Management", "Structural Design"],
+        education: ["Bachelor's in Civil Engineering", "Certification (e.g., PE license)"],
+        salary: "$60,000 – $120,000",
+        outlook: "High demand in urban development and government projects",
+        details: "Civil engineers play a vital role in infrastructure development. They apply scientific principles to build durable and sustainable structures."
+    },
+    pilot: {
+        title: "Commercial Pilot",
+        icon: "bi-airplane",
+        description: "Fly aircraft to transport passengers and cargo",
+        intelligences: ["spatial", "kinesthetic", "intrapersonal"],
+        skills: ["Decision-Making", "Hand-Eye Coordination", "Navigation"],
+        education: ["Commercial Pilot License (CPL)", "Flight Training School"],
+        salary: "$70,000 – $200,000",
+        outlook: "Excellent prospects in airlines and cargo services",
+        details: "Pilots operate aircraft and ensure passenger safety. They require extensive training, focus, and physical fitness."
+    },
+    journalist: {
+        title: "Journalist / Media Professional",
+        icon: "bi-newspaper",
+        description: "Research, write, and present news and stories",
+        intelligences: ["linguistic", "interpersonal", "intrapersonal"],
+        skills: ["Writing & Reporting", "Public Speaking", "Investigative Thinking"],
+        education: ["Bachelor's in Journalism / Mass Communication"],
+        salary: "$30,000 – $90,000",
+        outlook: "Opportunities in digital media and news outlets",
+        details: "Journalists inform the public about current events. They work across platforms like newspapers, TV, radio, and online media."
+    },
+    fashion_designer: {
+        title: "Fashion Designer",
+        icon: "bi-scissors",
+        description: "Design clothing and accessories",
+        intelligences: ["spatial", "kinesthetic", "intrapersonal"],
+        skills: ["Creativity", "Fabric Knowledge", "Sketching & CAD"],
+        education: ["Bachelor's in Fashion Design / Textile Design"],
+        salary: "$40,000 – $100,000+",
+        outlook: "Popular with rising e-commerce and fashion brands",
+        details: "Fashion designers create aesthetically pleasing, functional clothes. They often work with brands or run their own labels."
+    },
+    entrepreneur: {
+        title: "Entrepreneur",
+        icon: "bi-lightbulb",
+        description: "Start and run your own business venture",
+        intelligences: ["interpersonal", "intrapersonal", "logical"],
+        skills: ["Risk-taking", "Leadership", "Financial Planning"],
+        education: ["No formal degree needed (but BBA/MBA helps)"],
+        salary: "Varies (Can be $0 to millions)",
+        outlook: "Unlimited potential but high risk",
+        details: "Entrepreneurs build startups to solve real-world problems. They take ownership of their ideas and handle all aspects of a business."
+    },
+    chemist: {
+        title: "Chemist / Research Scientist",
+        icon: "bi-flask",
+        description: "Conduct experiments and create new products",
+        intelligences: ["logical", "naturalistic", "intrapersonal"],
+        skills: ["Analytical Skills", "Lab Techniques", "Research & Documentation"],
+        education: ["Bachelor's in Chemistry / Science", "Master's or Ph.D. for Research"],
+        salary: "$50,000 – $120,000",
+        outlook: "Excellent in pharmaceuticals and R&D",
+        details: "Chemists work in labs, developing new materials or medicines. They contribute significantly to scientific advancement."
+    },
+    accountant: {
+        title: "Chartered Accountant (CA)",
+        icon: "bi-calculator",
+        description: "Handle taxation, auditing, and financial management",
+        intelligences: ["logical", "intrapersonal", "linguistic"],
+        skills: ["Accounting", "Critical Thinking", "Problem Solving"],
+        education: ["CA Certification (via ICAI in India or equivalent)", "Commerce Background in 12th"],
+        salary: "$60,000 – $150,000",
+        outlook: "High demand in businesses and MNCs",
+        details: "CAs manage company finances and ensure compliance. They are essential in every industry, making it a secure and respected profession."
+    },
+    environmentalist: {
+        title: "Environmentalist",
+        icon: "bi-tree",
+        description: "Work to protect the environment",
+        intelligences: ["naturalistic", "intrapersonal", "interpersonal"],
+        skills: ["Environmental Awareness", "Policy Knowledge", "Communication"],
+        education: ["Bachelor's in Environmental Science / Ecology", "Master's in Environmental Policy (optional)"],
+        salary: "$40,000 – $100,000",
+        outlook: "Growing need due to climate change and sustainability efforts",
+        details: "Environmentalist careers focus on preserving natural resources, reducing pollution, and influencing policies to protect ecosystems."
+    },
+    cybersecurity_analyst: {
+        title: "Cybersecurity Analyst",
+        icon: "bi-shield-lock",
+        description: "Protect systems and networks from cyber threats",
+        intelligences: ["logical", "intrapersonal", "spatial"],
+        skills: ["Ethical Hacking", "Network Security", "Risk Assessment"],
+        education: ["Bachelor's in Computer Science / IT", "Certifications: CEH, CISSP, CompTIA Security+"],
+        salary: "$70,000 – $150,000",
+        outlook: "High demand in tech companies, governments, and banks",
+        details: "Cybersecurity experts defend against hacking, malware, and data breaches. It's one of the most in-demand tech jobs today."
+    },
+    digital_marketer: {
+        title: "Digital Marketer",
+        icon: "bi-megaphone",
+        description: "Promote brands online using digital channels",
+        intelligences: ["linguistic", "interpersonal", "spatial"],
+        skills: ["Content Strategy", "SEO/SEM", "Data Analytics"],
+        education: ["Bachelor's in Marketing / Business / Mass Media", "Digital Marketing Certifications"],
+        salary: "$40,000 – $100,000+",
+        outlook: "Booming industry due to rise of e-commerce",
+        details: "Digital marketers design campaigns, analyze traffic, and build brand presence across digital platforms."
+    },
+    chef: {
+        title: "Chef",
+        icon: "bi-egg-fried",
+        description: "Prepare food in restaurants or own business",
+        intelligences: ["kinesthetic", "intrapersonal", "naturalistic"],
+        skills: ["Cooking Techniques", "Creativity", "Time Management"],
+        education: ["Diploma / Degree in Culinary Arts", "Apprenticeship under professional chefs"],
+        salary: "$25,000 – $90,000+",
+        outlook: "Good prospects in hospitality industry",
+        details: "Chefs innovate with ingredients and presentation. It's a hands-on, artistic, and satisfying career."
+    },
+    animator: {
+        title: "Animation Artist",
+        icon: "bi-film",
+        description: "Create moving images and visual effects",
+        intelligences: ["spatial", "kinesthetic", "intrapersonal"],
+        skills: ["Drawing & Storyboarding", "2D/3D Animation Tools", "Creativity"],
+        education: ["Diploma / Bachelor's in Animation / Fine Arts"],
+        salary: "$35,000 – $100,000+",
+        outlook: "Expanding with gaming and OTT platforms",
+        details: "Animators bring characters to life through motion graphics, VFX, and storytelling."
+    },
+    ai_engineer: {
+        title: "AI / ML Engineer",
+        icon: "bi-robot",
+        description: "Design intelligent systems",
+        intelligences: ["logical", "intrapersonal", "spatial"],
+        skills: ["Machine Learning", "Data Analysis", "Python, TensorFlow, NLP"],
+        education: ["Bachelor's in CS / AI", "Master's / Specializations in AI"],
+        salary: "$80,000 – $180,000",
+        outlook: "Top-tier demand in research and industry",
+        details: "AI Engineers build algorithms to make systems smarter. They work on automation, chatbots, recommendation engines, and more."
+    },
+    content_creator: {
+        title: "Content Creator / Influencer",
+        icon: "bi-camera-video",
+        description: "Build audience through online content",
+        intelligences: ["interpersonal", "linguistic", "spatial"],
+        skills: ["Communication", "Video Editing", "Personal Branding"],
+        education: ["No formal degree required", "Media/Communication courses helpful"],
+        salary: "$0 – $1M+ (varies greatly)",
+        outlook: "Growing with social media expansion",
+        details: "Creators use platforms like YouTube, Instagram, and TikTok to entertain, educate, or influence. Monetization comes via ads, sponsorships, and merch."
+    },
+    social_worker: {
+        title: "Social Worker",
+        icon: "bi-people",
+        description: "Help individuals and communities",
+        intelligences: ["interpersonal", "intrapersonal", "linguistic"],
+        skills: ["Compassion", "Problem Solving", "Conflict Resolution"],
+        education: ["Bachelor's / Master's in Social Work (BSW/MSW)"],
+        salary: "$30,000 – $70,000",
+        outlook: "Stable growth in welfare sector",
+        details: "Social workers advocate for and assist vulnerable people. They improve quality of life through guidance, support, and resources."
+    }
+};
+        // Authentication and Initial Setup
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            displayUserName();
+            loadUserResults();
+            setupFilters();
+        });
+
+        async function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user || !user.token) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Invalid token');
+                }
+
+                const data = await response.json();
+                // Update user info in localStorage
+                localStorage.setItem('currentUser', JSON.stringify({
+                    ...user,
+                    name: data.user.name,
+                    email: data.user.email
+                }));
+            } catch (error) {
+                console.error('Auth error:', error);
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            }
+        }
+
+        function displayUserName() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.name) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('dropdownUserName').textContent = user.name;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        function loadUserResults() {
+            const results = JSON.parse(localStorage.getItem('intelligenceResults'));
+            if (!results) {
+                showNoResults("Please complete the intelligence assessment first.");
+                return;
+            }
+            displayCareers(results);
+        }
+
+        function setupFilters() {
+            document.getElementById('intelligenceFilter').addEventListener('change', updateDisplay);
+            document.getElementById('sortBy').addEventListener('change', updateDisplay);
+            document.getElementById('matchThreshold').addEventListener('input', function(e) {
+                document.getElementById('thresholdValue').textContent = e.target.value + '%';
+                updateDisplay();
+            });
+        }
+
+        function calculateMatch(careerIntelligences, userResults) {
+            let matchScore = 0;
+            let maxPossible = 0;
+            
+            careerIntelligences.forEach(intelligence => {
+                if (userResults[intelligence]) {
+                    matchScore += userResults[intelligence];
+                }
+                maxPossible += 5; // Maximum possible score for each intelligence
+            });
+
+            return Math.round((matchScore / maxPossible) * 100);
+        }
+
+        function displayCareers(userResults) {
+            const container = document.getElementById('careerContainer');
+            const filterType = document.getElementById('intelligenceFilter').value;
+            const sortType = document.getElementById('sortBy').value;
+            const threshold = parseInt(document.getElementById('matchThreshold').value);
+
+            let careerMatches = Object.entries(careers).map(([id, career]) => {
+                const match = calculateMatch(career.intelligences, userResults);
+                return { id, ...career, match };
+            });
+
+            // Apply filters
+            if (filterType !== 'all') {
+                careerMatches = careerMatches.filter(career => 
+                    career.intelligences.includes(filterType));
+            }
+
+            careerMatches = careerMatches.filter(career => career.match >= threshold);
+
+            // Sort careers
+            careerMatches.sort((a, b) => {
+                if (sortType === 'match') {
+                    return b.match - a.match;
+                } else {
+                    return a.title.localeCompare(b.title);
+                }
+            });
+
+            if (careerMatches.length === 0) {
+                showNoResults("No careers match your current filters.");
+                return;
+            }
+
+            container.innerHTML = careerMatches.map(career => `
+                <div class="col-md-6 col-lg-4">
+                    <div class="career-card position-relative">
+                        <span class="match-percentage">${career.match}% Match</span>
+                        <div class="text-center">
+                            <div class="career-icon">
+                                <i class="bi ${career.icon}"></i>
+                            </div>
+                            <h4>${career.title}</h4>
+                            <p class="text-muted">${career.description}</p>
+                            <div class="mb-3">
+                                ${career.intelligences.map(intel => 
+                                    `<span class="intelligence-tag">${formatIntelligenceName(intel)}</span>`
+                                ).join(' ')}
+                            </div>
+                            <button class="btn btn-primary" onclick="showCareerDetails('${career.id}')">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showNoResults(message) {
+            document.getElementById('careerContainer').innerHTML = `
+                <div class="col-12">
+                    <div class="no-results">
+                        <i class="bi bi-exclamation-circle text-warning display-4"></i>
+                        <h4 class="mt-3">${message}</h4>
+                        ${message.includes('assessment') ? 
+                            `<a href="intelligence.html" class="btn btn-primary mt-3">Take Intelligence Assessment</a>` : 
+                            ''}
+                    </div>
+                </div>
+            `;
+        }
+
+      // In careers.html, update the showCareerDetails function:
+
+      function showCareerDetails(careerId) {
+        const career = careers[careerId];
+        const modalContent = `
+            <div class="career-details">
+                <h4 class="mb-4">${career.title}</h4>
+                <p class="lead">${career.description}</p>
+                
+                <h5 class="mt-4">Required Intelligence Types:</h5>
+                <p>${career.intelligences.map(intel => formatIntelligenceName(intel)).join(', ')}</p>
+                
+                <h5 class="mt-4">Key Skills:</h5>
+                <ul>
+                    ${career.skills.map(skill => `<li>${skill}</li>`).join('')}
+                </ul>
+                
+                <h5 class="mt-4">Education Requirements:</h5>
+                <ul>
+                    ${career.education.map(edu => `<li>${edu}</li>`).join('')}
+                </ul>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h5>Salary Range:</h5>
+                        <p>${career.salary}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Career Outlook:</h5>
+                        <p>${career.outlook}</p>
+                    </div>
+                </div>
+                
+                <h5 class="mt-4">Detailed Description:</h5>
+                <p>${career.details}</p>
+    
+                <div class="text-center mt-4">
+                    <a href="roadmap.html" class="btn btn-primary btn-lg" onclick="localStorage.setItem('selectedCareer', '${careerId}')">
+                        <i class="bi bi-map"></i> View Career Roadmap
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('careerModalTitle').textContent = career.title;
+        document.getElementById('careerModalContent').innerHTML = modalContent;
+        
+        new bootstrap.Modal(document.getElementById('careerModal')).show();
+    }
+        function formatIntelligenceName(type) {
+            const names = {
+                linguistic: "Linguistic",
+                logical: "Logical-Mathematical",
+                spatial: "Visual-Spatial",
+                musical: "Musical",
+                kinesthetic: "Bodily-Kinesthetic",
+                interpersonal: "Interpersonal",
+                intrapersonal: "Intrapersonal",
+                naturalistic: "Naturalistic",
+                existential: "Existential"
+            };
+            return names[type] || type;
+        }
+
+        function updateDisplay() {
+            const results = JSON.parse(localStorage.getItem('intelligenceResults'));
+            if (results) {
+                displayCareers(results);
+            }
+        }
+    </script>
+</body>
+</html>

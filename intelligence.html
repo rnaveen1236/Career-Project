@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Test - Career Success Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #E74C3C;
+            --accent-color: #3498DB;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --success-color: #27AE60;
+            --warning-color: #F1C40F;
+            --danger-color: #E74C3C;
+        }
+
+        body {
+            color: #333333 !important; /* Explicit text color with !important */
+            background-color: #ffffff !important; /* Explicit background color with !important */
+            font-family: 'Inter', sans-serif;
+            padding-top: 80px;
+        }
+
+        .text-muted {
+            color: #6c757d !important; /* Explicit muted text color */
+        }
+
+        /* Remove local brand colors since we're using global styles */
+        /* .brand-career { color: var(--primary-color); } */
+        /* .brand-guide { color: var(--secondary-color); } */
+
+        /* Ensure form text is visible */
+        .form-control {
+            color: #333333 !important;
+            background-color: #ffffff !important;
+        }
+
+        /* Ensure dropdown text is visible */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s ease;
+            color: #333333;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--accent-color);
+        }
+
+        .dropdown-item.text-danger:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+        }
+
+        #userDropdown {
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.75rem;
+        }
+
+        #userDropdown:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .dropdown-item-text {
+            background-color: #f8f9fa;
+        }
+
+        /* Ensure card text is visible */
+        .card {
+            background-color: #ffffff !important;
+            color: #333333 !important;
+        }
+
+        /* Ensure navbar text is visible */
+        .navbar {
+            background-color: #ffffff !important;
+        }
+
+        .nav-link {
+            color: #333333 !important;
+        }
+
+        /* Ensure feature card text is visible */
+        .feature-card {
+            background-color: #ffffff !important;
+            color: #333333 !important;
+        }
+
+        /* Ensure test question text is visible */
+        .question-text {
+            color: #333333 !important;
+        }
+
+        .option-label {
+            color: #333333 !important;
+        }
+
+        /* Ensure progress bar text is visible */
+        .progress-text {
+            color: #333333 !important;
+        }
+
+        /* Ensure button text is visible */
+        .btn {
+            color: #ffffff !important;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Ensure modal text is visible */
+        .modal-content {
+            background-color: #ffffff !important;
+            color: #333333 !important;
+        }
+
+        .modal-title {
+            color: #333333 !important;
+        }
+
+        .modal-body {
+            color: #333333 !important;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .intelligence-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .intelligence-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .intelligence-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .rating-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .rating-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .rating-btn:hover {
+            background-color: #f0f0f0;
+            border-color: var(--accent-color);
+        }
+
+        .rating-btn.selected {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .submit-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        .test-btn {
+            background-color: var(--accent-color) !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 20px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2) !important;
+            margin: 10px 0 !important;
+        }
+
+        .test-btn:hover {
+            background-color: var(--primary-color) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3) !important;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+        }
+
+        .modal-header {
+            background-color: var(--light-color);
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-footer {
+            border-top: none;
+            background-color: var(--light-color);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        .progress-bar {
+            background-color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .question-card {
+            border-color: var(--accent-color);
+        }
+
+        .option-card:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .intelligence-type-card {
+            border-color: var(--accent-color);
+        }
+
+        .intelligence-type-card:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <span class="brand-career">Career</span><span class="brand-guide">Success</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="bi bi-house-door me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="psychometric.html">
+                            <i class="bi bi-clipboard-data me-1"></i>Psychometric Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="intelligence.html">
+                            <i class="bi bi-lightbulb me-1"></i>Intelligence Test
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="careers.html">
+                            <i class="bi bi-briefcase me-1"></i>Career Matches
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="roadmap.html">
+                            <i class="bi bi-map me-1"></i>Career Roadmap
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-dark dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown" style="text-decoration: none;">
+                            <div class="profile-icon me-2">
+                                <i class="bi bi-person-circle"></i>
+                            </div>
+                            <span id="userName" class="fw-bold text-dark"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" style="min-width: 200px;">
+                            <li>
+                                <div class="dropdown-item-text px-3 py-2 border-bottom">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-icon me-2">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <div>
+                                            <div id="dropdownUserName" class="fw-bold"></div>
+                                            <small class="text-muted">Member</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person-circle me-2"></i>My Profile</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bell me-2"></i>Notifications</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger py-2" href="#" onclick="logout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h1 class="mb-3">Multiple Intelligence Assessment</h1>
+                <p class="text-muted">Take the quick test for each intelligence type or rate yourself directly</p>
+            </div>
+        </div>
+
+        <div class="row">
+                        <!-- Linguistic Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-book"></i>
+                                    </div>
+                                    <h4>Linguistic Intelligence</h4>
+                                    <p class="text-muted">Word Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('linguistic')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="linguistic">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Reading, writing, speaking, storytelling</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Logical-Mathematical Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-calculator"></i>
+                                    </div>
+                                    <h4>Logical-Mathematical</h4>
+                                    <p class="text-muted">Number/Logic Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('logical')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="logical">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Problem-solving, patterns, scientific thinking</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Visual-Spatial Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-palette"></i>
+                                    </div>
+                                    <h4>Visual-Spatial</h4>
+                                    <p class="text-muted">Picture Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('spatial')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="spatial">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Visualization, art, design, navigation</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Musical Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-music-note-beamed"></i>
+                                    </div>
+                                    <h4>Musical</h4>
+                                    <p class="text-muted">Music Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('musical')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="musical">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Rhythm, pitch, melody, musical expression</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Bodily-Kinesthetic Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-person-walking"></i>
+                                    </div>
+                                    <h4>Bodily-Kinesthetic</h4>
+                                    <p class="text-muted">Body Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('kinesthetic')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="kinesthetic">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Physical coordination, sports, hands-on learning</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Interpersonal Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <h4>Interpersonal</h4>
+                                    <p class="text-muted">People Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('interpersonal')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="interpersonal">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Understanding others, leadership, teamwork</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Intrapersonal Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-person-heart"></i>
+                                    </div>
+                                    <h4>Intrapersonal</h4>
+                                    <p class="text-muted">Self Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('intrapersonal')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="intrapersonal">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Self-awareness, reflection, personal goals</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Naturalistic Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-tree"></i>
+                                    </div>
+                                    <h4>Naturalistic</h4>
+                                    <p class="text-muted">Nature Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('naturalistic')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="naturalistic">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Understanding nature, patterns in environment</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Existential Intelligence -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="intelligence-card">
+                                <div class="text-center">
+                                    <div class="intelligence-icon">
+                                        <i class="bi bi-stars"></i>
+                                    </div>
+                                    <h4>Existential</h4>
+                                    <p class="text-muted">Life Smart</p>
+                                    <button class="btn btn-primary test-btn" onclick="showTest('existential')">
+                                        Take Quick Test
+                                    </button>
+                                    <div class="rating-group" data-intelligence="existential">
+                                        <button type="button" class="rating-btn" data-value="1">1</button>
+                                        <button type="button" class="rating-btn" data-value="2">2</button>
+                                        <button type="button" class="rating-btn" data-value="3">3</button>
+                                        <button type="button" class="rating-btn" data-value="4">4</button>
+                                        <button type="button" class="rating-btn" data-value="5">5</button>
+                                    </div>
+                                    <p class="small text-muted">Understanding big questions about life and existence</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="submit-section">
+                        <button class="btn btn-primary btn-lg" onclick="submitAssessment()">
+                            Submit Assessment
+                        </button>
+                    </div>
+                </div>
+                    <!-- Test Modal -->
+    <div class="modal fade" id="testModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testModalTitle">Quick Test</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="questionContainer" class="mb-4">
+                        <!-- Questions will be inserted here -->
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 0%" id="testProgress"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-secondary" onclick="previousQuestion()" id="prevQuestionBtn">Previous</button>
+                        <button class="btn btn-primary" onclick="nextQuestion()" id="nextQuestionBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal fade" id="resultsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Intelligence Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="resultsContent">
+                    <!-- Results will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="careers.html" class="btn btn-primary">View Career Matches</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Intelligence Tests Data
+    const intelligenceTests = {
+        linguistic: {
+            title: "Linguistic Intelligence Test",
+            questions: [
+                {
+                    question: "Which word is closest in meaning to 'Eloquent'?",
+                    options: ["Articulate", "Silent", "Clumsy", "Awkward"],
+                    correct: 0
+                },
+                {
+                    question: "Complete the analogy: Book is to Reader as Speech is to ___",
+                    options: ["Writer", "Listener", "Speaker", "Teacher"],
+                    correct: 1
+                },
+                {
+                    question: "What type of word is 'Swiftly'?",
+                    options: ["Noun", "Verb", "Adjective", "Adverb"],
+                    correct: 3
+                }
+            ]
+        },
+        logical: {
+            title: "Logical-Mathematical Intelligence Test",
+            questions: [
+                {
+                    question: "If 3x + 7 = 22, what is x?",
+                    options: ["5", "7", "3", "15"],
+                    correct: 0
+                },
+                {
+                    question: "Complete the sequence: 2, 4, 8, 16, __",
+                    options: ["20", "24", "32", "64"],
+                    correct: 2
+                },
+                {
+                    question: "If all A are B, and all B are C, then:",
+                    options: ["All C are A", "All A are C", "No A are C", "None of the above"],
+                    correct: 1
+                }
+            ]
+        },
+        spatial: {
+            title: "Visual-Spatial Intelligence Test",
+            questions: [
+                {
+                    question: "Which shape would complete a cube when folded?",
+                    options: ["T-shape", "Cross shape", "L-shape", "H-shape"],
+                    correct: 1
+                },
+                {
+                    question: "If you rotate a triangle 180 degrees, what happens?",
+                    options: ["It looks the same", "It's inverted", "It becomes a square", "Nothing changes"],
+                    correct: 1
+                },
+                {
+                    question: "What would you see if you looked at a cube from above?",
+                    options: ["Rectangle", "Circle", "Square", "Triangle"],
+                    correct: 2
+                }
+            ]
+        },
+        musical: {
+            title: "Musical Intelligence Test",
+            questions: [
+                {
+                    question: "What is the term for the speed of music?",
+                    options: ["Rhythm", "Tempo", "Beat", "Melody"],
+                    correct: 1
+                },
+                {
+                    question: "Which note combination makes a major chord?",
+                    options: ["1-3-5", "1-4-5", "1-2-3", "1-2-5"],
+                    correct: 0
+                },
+                {
+                    question: "What is the silence in music called?",
+                    options: ["Stop", "Break", "Rest", "Pause"],
+                    correct: 2
+                }
+            ]
+        },
+        kinesthetic: {
+            title: "Bodily-Kinesthetic Intelligence Test",
+            questions: [
+                {
+                    question: "Which activity requires the most hand-eye coordination?",
+                    options: ["Reading", "Juggling", "Listening", "Thinking"],
+                    correct: 1
+                },
+                {
+                    question: "What is the best way to learn a new dance move?",
+                    options: ["Reading about it", "Watching a video", "Practicing it", "Discussing it"],
+                    correct: 2
+                },
+                {
+                    question: "Which sport requires the most balance?",
+                    options: ["Swimming", "Running", "Gymnastics", "Baseball"],
+                    correct: 2
+                }
+            ]
+        },
+        interpersonal: {
+            title: "Interpersonal Intelligence Test",
+            questions: [
+                {
+                    question: "What's the best way to resolve a conflict between friends?",
+                    options: ["Ignore it", "Take sides", "Mediate and listen", "Walk away"],
+                    correct: 2
+                },
+                {
+                    question: "How can you tell if someone is upset?",
+                    options: ["Body language", "Ask others", "Guess", "Ignore it"],
+                    correct: 0
+                },
+                {
+                    question: "What makes a good team leader?",
+                    options: ["Being bossy", "Working alone", "Being empathetic", "Avoiding conflict"],
+                    correct: 2
+                }
+            ]
+        },
+        intrapersonal: {
+            title: "Intrapersonal Intelligence Test",
+            questions: [
+                {
+                    question: "What's the best way to set personal goals?",
+                    options: ["Copy others", "Follow trends", "Self-reflection", "Random choice"],
+                    correct: 2
+                },
+                {
+                    question: "How do you best handle stress?",
+                    options: ["Ignore it", "Understanding triggers", "Blame others", "Give up"],
+                    correct: 1
+                },
+                {
+                    question: "What's important for self-improvement?",
+                    options: ["Comparing to others", "Self-awareness", "Avoiding challenges", "Following others"],
+                    correct: 1
+                }
+            ]
+        },
+        naturalistic: {
+            title: "Naturalistic Intelligence Test",
+            questions: [
+                {
+                    question: "What's the best way to identify a plant species?",
+                    options: ["Guess", "Observe patterns", "Ignore it", "Ask someone"],
+                    correct: 1
+                },
+                {
+                    question: "How do animals adapt to their environment?",
+                    options: ["They don't", "Through evolution", "By chance", "Immediately"],
+                    correct: 1
+                },
+                {
+                    question: "What indicates incoming rain?",
+                    options: ["Cloud patterns", "Wind direction", "Both A and B", "Neither"],
+                    correct: 2
+                }
+            ]
+        },
+        existential: {
+            title: "Existential Intelligence Test",
+            questions: [
+                {
+                    question: "What philosophical question best represents existential thinking?",
+                    options: ["What's for lunch?", "Why do we exist?", "What time is it?", "Where's my phone?"],
+                    correct: 1
+                },
+                {
+                    question: "How do you approach life's big questions?",
+                    options: ["Avoid them", "Deep reflection", "Quick answers", "Ignore them"],
+                    correct: 1
+                },
+                {
+                    question: "What's most important in understanding life's purpose?",
+                    options: ["Money", "Status", "Self-reflection", "Following others"],
+                    correct: 2
+                }
+            ]
+        }
+    };
+
+    let currentTestType = '';
+    let currentQuestionIndex = 0;
+    let userAnswers = {};  // Changed to object to store answers for each intelligence type
+
+    // Authentication and User Display
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+        displayUserName();
+        setupRatingButtons();
+        setupModalCleanup();
+    });
+
+    async function checkAuth() {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user || !user.token) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3000/api/profile', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Invalid token');
+            }
+
+            const data = await response.json();
+            // Update user info in localStorage
+            localStorage.setItem('currentUser', JSON.stringify({
+                ...user,
+                name: data.user.name,
+                email: data.user.email
+            }));
+        } catch (error) {
+            console.error('Auth error:', error);
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+    }
+
+    function displayUserName() {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user && user.name) {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('dropdownUserName').textContent = user.name;
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+
+    function setupRatingButtons() {
+        document.querySelectorAll('.rating-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.rating-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+    }
+
+    function showTest(intelligenceType) {
+        currentTestType = intelligenceType;
+        currentQuestionIndex = 0;
+        
+        // Initialize answers for this intelligence type if not exists
+        if (!userAnswers[intelligenceType]) {
+            userAnswers[intelligenceType] = [];
+        }
+        
+        document.getElementById('testModalTitle').textContent = 
+            intelligenceTests[intelligenceType].title;
+        
+        // Reset navigation buttons display
+        document.getElementById('prevQuestionBtn').style.display = 'block';
+        document.getElementById('nextQuestionBtn').style.display = 'block';
+        
+        showCurrentQuestion();
+        new bootstrap.Modal(document.getElementById('testModal')).show();
+    }
+
+    function showCurrentQuestion() {
+        const test = intelligenceTests[currentTestType];
+        const question = test.questions[currentQuestionIndex];
+        const progress = ((currentQuestionIndex + 1) / test.questions.length) * 100;
+
+        document.getElementById('testProgress').style.width = `${progress}%`;
+        
+        const html = `
+            <div class="question-content">
+                <h5 class="mb-3">Question ${currentQuestionIndex + 1} of ${test.questions.length}</h5>
+                <p class="mb-4">${question.question}</p>
+                <div class="options-container">
+                    ${question.options.map((option, index) => `
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" 
+                                name="question" 
+                                value="${index}" 
+                                ${userAnswers[currentTestType][currentQuestionIndex] === index ? 'checked' : ''}>
+                            <label class="form-check-label">${option}</label>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+        document.getElementById('questionContainer').innerHTML = html;
+        
+        document.getElementById('prevQuestionBtn').disabled = currentQuestionIndex === 0;
+        document.getElementById('nextQuestionBtn').textContent = 
+            currentQuestionIndex === test.questions.length - 1 ? 'Finish' : 'Next';
+    }
+
+    function nextQuestion() {
+        const selectedOption = document.querySelector('input[name="question"]:checked');
+        if (!selectedOption && currentQuestionIndex < intelligenceTests[currentTestType].questions.length - 1) {
+            alert('Please select an answer before proceeding.');
+            return;
+        }
+        
+        if (selectedOption) {
+            userAnswers[currentTestType][currentQuestionIndex] = parseInt(selectedOption.value);
+        }
+
+        if (currentQuestionIndex < intelligenceTests[currentTestType].questions.length - 1) {
+            currentQuestionIndex++;
+            showCurrentQuestion();
+        } else {
+            showTestResults();
+        }
+    }
+
+    function previousQuestion() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            showCurrentQuestion();
+        }
+    }
+
+    function showTestResults() {
+        const test = intelligenceTests[currentTestType];
+        let correctAnswers = 0;
+        
+        userAnswers[currentTestType].forEach((answer, index) => {
+            if (answer === test.questions[index].correct) {
+                correctAnswers++;
+            }
+        });
+
+        const score = Math.round((correctAnswers / test.questions.length) * 5);
+        const recommendedRating = Math.max(1, score);
+
+        const html = `
+            <div class="text-center">
+                <h4>Test Complete!</h4>
+                <p class="mb-4">You got ${correctAnswers} out of ${test.questions.length} questions correct.</p>
+                <div class="alert alert-info">
+                    Based on your performance, we recommend rating your ${formatIntelligenceName(currentTestType)} 
+                    intelligence as: ${recommendedRating} out of 5
+                </div>
+                <button class="btn btn-primary" onclick="applyRecommendedRating(${recommendedRating})" data-bs-dismiss="modal">
+                    Apply This Rating
+                </button>
+            </div>
+        `;
+
+        document.getElementById('questionContainer').innerHTML = html;
+        document.getElementById('prevQuestionBtn').style.display = 'none';
+        document.getElementById('nextQuestionBtn').style.display = 'none';
+        document.getElementById('testProgress').style.width = '100%';
+    }
+
+    function applyRecommendedRating(rating) {
+        const ratingGroup = document.querySelector(`[data-intelligence="${currentTestType}"]`);
+        const buttons = ratingGroup.querySelectorAll('.rating-btn');
+        
+        buttons.forEach(btn => {
+            btn.classList.remove('selected');
+            if (parseInt(btn.getAttribute('data-value')) === rating) {
+                btn.classList.add('selected');
+            }
+        });
+    }
+
+    function submitAssessment() {
+        const results = {};
+        let allRated = true;
+
+        document.querySelectorAll('.intelligence-card').forEach(card => {
+            card.style.border = 'none';
+        });
+
+        document.querySelectorAll('.rating-group').forEach(group => {
+            const intelligence = group.getAttribute('data-intelligence');
+            const selectedButton = group.querySelector('.rating-btn.selected');
+            
+            if (selectedButton) {
+                results[intelligence] = parseInt(selectedButton.getAttribute('data-value'));
+            } else {
+                allRated = false;
+                group.closest('.intelligence-card').style.border = '2px solid var(--danger-color)';
+            }
+        });
+
+        if (!allRated) {
+            alert('Please rate all intelligence types before submitting.');
+            return;
+        }
+
+        localStorage.setItem('intelligenceResults', JSON.stringify(results));
+        showFinalResults(results);
+    }
+
+    function showFinalResults(results) {
+        const sortedResults = Object.entries(results)
+            .sort(([,a], [,b]) => b - a)
+            .slice(0, 3);
+
+        const resultsHTML = `
+            <div class="results-summary">
+                <h4 class="mb-4">Your Top 3 Intelligence Types</h4>
+                <div class="row">
+                    ${sortedResults.map(([type, score], index) => `
+                        <div class="col-md-4 mb-3">
+                            <div class="card text-center ${index === 0 ? 'border-primary' : ''}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${formatIntelligenceName(type)}</h5>
+                                    <div class="display-4 my-2">${score}/5</div>
+                                    <p class="card-text">${getIntelligenceDescription(type)}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="mt-4">
+                    <h5>What This Means</h5>
+                    <p>Your strongest intelligence types are:</p>
+                    <ol>
+                        ${sortedResults.map(([type, score]) => `
+                            <li><strong>${formatIntelligenceName(type)}</strong> (Score: ${score}/5)</li>
+                        `).join('')}
+                    </ol>
+                    <p>These strengths suggest you may excel in careers that utilize these intelligence types. 
+                       Click "View Career Matches" to explore suitable career paths.</p>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('resultsContent').innerHTML = resultsHTML;
+        new bootstrap.Modal(document.getElementById('resultsModal')).show();
+    }
+
+    function formatIntelligenceName(type) {
+        const names = {
+            linguistic: "Linguistic",
+            logical: "Logical-Mathematical",
+            spatial: "Visual-Spatial",
+            musical: "Musical",
+            kinesthetic: "Bodily-Kinesthetic",
+            interpersonal: "Interpersonal",
+            intrapersonal: "Intrapersonal",
+            naturalistic: "Naturalistic",
+            existential: "Existential"
+        };
+        return names[type] || type;
+    }
+
+    function getIntelligenceDescription(type) {
+        const descriptions = {
+            linguistic: "Strong with words and language",
+            logical: "Excellence in logical and mathematical thinking",
+            spatial: "Good with visual and spatial understanding",
+            musical: "Strong musical and rhythmic abilities",
+            kinesthetic: "Skilled in body movement and physical control",
+            interpersonal: "Great at understanding and working with others",
+            intrapersonal: "Strong self-understanding and management",
+            naturalistic: "Connected with nature and the environment",
+            existential: "Deep understanding of life's bigger questions"
+        };
+        return descriptions[type] || "";
+    }
+</script>
+</body>
+</html>
